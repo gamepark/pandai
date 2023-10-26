@@ -1,7 +1,10 @@
-import { isEnumValue } from '@gamepark/rules-api'
+import { isEnumValue } from '@gamepark/rules-api';
 
 export enum PlayerColor {
-  Blue = 1, Red, Green, Yellow
+    Blue = 1,
+    Orange,
+    Pink,
+    Black,
 }
 
-export const playerColors = Object.values(PlayerColor).filter(isEnumValue)
+export const playerColors = Object.values(PlayerColor).filter(isEnumValue);
