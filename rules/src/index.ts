@@ -1,3 +1,3 @@
-export { GameTemplateRules } from './GameTemplateRules'
-export { GameOptionsSpec } from './GameTemplateOptions'
-export { GameTemplateSetup } from './GameTemplateSetup'
+export { PandaiRules } from './PandaiRules'
+export { GameOptionsSpec } from './PandaiOptions'
+export { PandaiSetup } from './PandaiSetup'
