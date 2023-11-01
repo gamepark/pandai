@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <GameDisplay/>
-      <LoadingScreen display={loading} author="Someone" artist="Somebody" publisher="Nobody" developer="You"/>
+      <LoadingScreen display={loading} author="Igor Polouchine" artist="Paul Mafayon" publisher="Origames" developer="Séverine Kamycki (mizutismask)"/>
       <MaterialHeader rulesStepsHeaders={RulesHeaders} loading={loading}/>
       <Menu/>
       <FailuresDialog/>
