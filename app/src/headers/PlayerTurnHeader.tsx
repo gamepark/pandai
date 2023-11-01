@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
 export const PlayerTurnHeader = () => {
-  return <>Hello world!</>
+  return <>Hello Pandai world!</>
 }

@@ -1,17 +1,12 @@
 {
-  "extends": "./tsconfig.paths.json",
-  "compilerOptions": {
-    "module": "esnext",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "es2019"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "noEmit": true
-  },
-  "include": [
-    "src"
-  ]
+    "extends": "./tsconfig.paths.json",
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["dom", "es2019"],
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "noEmit": true
+    },
+    "include": ["src", "src/material/PandaiCardDescription.tsx", "../rules/src/material/PandaiCardType.ts"]
 }

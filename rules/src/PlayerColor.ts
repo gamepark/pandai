@@ -7,4 +7,6 @@ export enum PlayerColor {
     Black,
 }
 
+export default PlayerColor
+
 export const playerColors = Object.values(PlayerColor).filter(isEnumValue);

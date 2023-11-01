@@ -1,6 +1,9 @@
-import { LocationType } from '@gamepark/pandai/material/LocationType'
-import { MaterialType } from '@gamepark/pandai/material/MaterialType'
-import { PlayerColor } from '@gamepark/pandai/PlayerColor'
-import { ItemLocator } from '@gamepark/react-game'
+import { LocationType } from '@gamepark/pandai/material/LocationType';
+import { MaterialType } from '@gamepark/pandai/material/MaterialType';
+import { PlayerColor } from '@gamepark/pandai/PlayerColor';
+import { ItemLocator } from '@gamepark/react-game';
+import { CardsDeckLocator } from './CardsDeckLocator';
 
-export const Locators: Partial<Record<LocationType, ItemLocator<PlayerColor, MaterialType, LocationType>>> = {}
+export const Locators: Partial<Record<LocationType, ItemLocator<PlayerColor, MaterialType, LocationType>>> = {
+    [LocationType.ForestDeck]: new CardsDeckLocator(),
+};
