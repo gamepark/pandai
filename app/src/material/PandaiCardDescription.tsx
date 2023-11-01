@@ -19,8 +19,8 @@ import { PandaiCardType } from '@gamepark/pandai/material/PandaiCardType';
 
 export class PandaiCardDescription extends CardDescription {
     backImage = backForest;
-    //ratio = 5 / 7;
-    //width = 8.8;
+    ratio = 5 / 7;
+    width = 8.8;
     images = {
         [PandaiCardType.CHAIR]: card1,
         [PandaiCardType.PORCUPINE]: card2,

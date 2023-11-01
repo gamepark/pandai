@@ -3,9 +3,11 @@ import { MaterialDescription } from '@gamepark/react-game'
 import { boardDescription } from './BoardDescription';
 import { pandaDescription } from './PandaDescription';
 import { pandaiCardDescription } from './PandaiCardDescription';
+import { pandaiTokenDescription } from './PandaiTokenDescription';
 
 export const Material: Partial<Record<MaterialType, MaterialDescription>> = {
     [MaterialType.Board]: boardDescription,
     [MaterialType.Panda]: pandaDescription,
     [MaterialType.Card]: pandaiCardDescription,
+    [MaterialType.PandaiToken]: pandaiTokenDescription,
 };

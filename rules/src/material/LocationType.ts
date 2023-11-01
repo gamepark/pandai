@@ -3,5 +3,5 @@ export enum LocationType {
     //MeadowDeck,
     ForestDeck,
     PandaStock,
-    //PandaiTokensStock
+    PandaiTokenStock,
 }
