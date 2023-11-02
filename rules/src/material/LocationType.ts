@@ -4,4 +4,11 @@ export enum LocationType {
     ForestDeck,
     PandaStock,
     PandaiTokenStock,
+    GridSquare,
+
+    //corners of the board
+    PinkStartGridSquare,
+    BlackStartGridSquare,
+    OrangeStartGridSquare,
+    BlueStartGridSquare,
 }

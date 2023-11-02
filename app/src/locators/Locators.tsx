@@ -5,9 +5,16 @@ import { ItemLocator } from '@gamepark/react-game';
 import { ForestDeckLocator as ForestDeckLocator } from './ForestDeckLocator';
 import { PandaiTokenStockLocator } from './PandaiTokenStockLocator';
 import { MeadowDeckLocator } from './MeadowDeckLocator';
+import { PandaStockLocator } from './PandaStockLocator';
+import { PinkStartGridSquareLocator,BlueStartGridSquareLocator,BlackStartGridSquareLocator,OrangeStartGridSquareLocator  } from './GridSquareLocator';
 
 export const Locators: Partial<Record<LocationType, ItemLocator<PlayerColor, MaterialType, LocationType>>> = {
     [LocationType.ForestDeck]: new ForestDeckLocator(),
     [LocationType.MeadowDeck]: new MeadowDeckLocator(),
     [LocationType.PandaiTokenStock]: new PandaiTokenStockLocator(),
+    [LocationType.PandaStock]: new PandaStockLocator(),
+    [LocationType.PinkStartGridSquare]: new PinkStartGridSquareLocator(),
+    [LocationType.BlueStartGridSquare]: new BlueStartGridSquareLocator(),
+    [LocationType.BlackStartGridSquare]: new BlackStartGridSquareLocator(),
+    [LocationType.OrangeStartGridSquare]: new OrangeStartGridSquareLocator(),
 };

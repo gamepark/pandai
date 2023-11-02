@@ -11,7 +11,8 @@ import card3 from '../images/tokens/token-green.png';
 import card4 from '../images/tokens/token-purple.png';
 import card5 from '../images/tokens/token-red.png';
 import card6 from '../images/tokens/token-yellow.png';
-import { PandaiColor as PandaiColor } from '@gamepark/pandai/material/PandaColor';
+import { PandaiColor as PandaiColor } from '@gamepark/pandai/material/PandaiColor';
+import { css } from '@emotion/react';
 
 export class PandaiTokenDescription extends RoundTokenDescription {
     ratio = 1;
@@ -25,7 +26,10 @@ export class PandaiTokenDescription extends RoundTokenDescription {
         [PandaiColor.Red]: card5,
         [PandaiColor.Yellow]: card6,
     };
-
+//add ${color}
+    extraCss = css`
+    background: white
+  `
    /* getExtraCss(location: Location<PandaColor, LocationType>, { rules }: MaterialContext<PandaColor, MaterialType, LocationType>) {
         return borderCss(rules.material(MaterialType.PandaiToken)[location.id])
       }*/
