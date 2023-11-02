@@ -1,6 +1,6 @@
 import { CardDescription } from '@gamepark/react-game';
 
-//import backMeadow from '../images/cards/MeadowBack.jpg';
+import backMeadow from '../images/cards/meadowBack.jpg';
 import backForest from '../images/cards/forestBack.jpg';
 import card1 from '../images/cards/card1.jpg';
 import card2 from '../images/cards/card2.jpg';
@@ -18,9 +18,8 @@ import card13 from '../images/cards/card13.jpg';
 import { PandaiCardType } from '@gamepark/pandai/material/PandaiCardType';
 
 export class PandaiCardDescription extends CardDescription {
-    backImage = backForest;
-    ratio = 5 / 7;
-    width = 8.8;
+    ratio = 1;
+    width = 4.5;
     images = {
         [PandaiCardType.CHAIR]: card1,
         [PandaiCardType.PORCUPINE]: card2,
@@ -38,4 +37,12 @@ export class PandaiCardDescription extends CardDescription {
     };
 }
 
-export const pandaiCardDescription = new PandaiCardDescription();
+export class ForestCardDescription extends PandaiCardDescription{
+    backImage = backForest;
+}
+export class MeadowCardDescription extends PandaiCardDescription{
+    backImage = backMeadow;
+}
+
+export const forestCardDescription = new ForestCardDescription();
+export const meadowCardDescription = new MeadowCardDescription();

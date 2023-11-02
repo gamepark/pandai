@@ -6,20 +6,20 @@ import brown from '../images/pandas/brown-panda.png'
 import purple from '../images/pandas/purple-panda.png'
 import green from '../images/pandas/green-panda.png'
 import { TokenDescription } from '@gamepark/react-game'
-import { PandaColor } from '@gamepark/pandai/material/PandaColor'
-import { PandaRules } from './PandaRules'
+import { PandaiColor } from '@gamepark/pandai/material/PandaColor';
+import { PandaRules } from './PandaRules';
 
 class PandaDescription extends TokenDescription {
     width = 1.44;
     height = 4.77;
 
     images = {
-        [PandaColor.Red]: red,
-        [PandaColor.Blue]: blue,
-        [PandaColor.Yellow]: yellow,
-        [PandaColor.Brown]: brown,
-        [PandaColor.Purple]: purple,
-        [PandaColor.Green]: green,
+        [PandaiColor.Red]: red,
+        [PandaiColor.Blue]: blue,
+        [PandaiColor.Yellow]: yellow,
+        [PandaiColor.Brown]: brown,
+        [PandaiColor.Purple]: purple,
+        [PandaiColor.Green]: green,
     };
 
     rules = PandaRules;

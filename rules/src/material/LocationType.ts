@@ -1,6 +1,6 @@
 export enum LocationType { 
     Board = 1, // The board location
-    //MeadowDeck,
+    MeadowDeck,
     ForestDeck,
     PandaStock,
     PandaiTokenStock,

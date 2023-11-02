@@ -6,8 +6,8 @@ import { BoardRules } from './BoardRules'
 
 class PandaiBoardDescription extends BoardDescription {
   image = board
-  height = 56
-  width = 56
+  height =55
+  width = 55
   staticItem = { location: { type: LocationType.Board } }
  /* locations = nodes.map<Location>(place => ({ type: LocationType.Place, id: place }))
     .concat([

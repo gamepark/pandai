@@ -13,7 +13,7 @@ export const BoardRules = () => {
     <p>{t('rules.board.place.blue')}</p>
     <p>
       <Trans defaults="rules.board.place.red">
-        <PlayMoveButton css={linkButtonCss} move={displayMaterialRules(MaterialType.Card)} local/>
+        <PlayMoveButton css={linkButtonCss} move={displayMaterialRules(MaterialType.Board)} local/>
       </Trans>
     </p>
     <p>{t('rules.board.road')}</p>

@@ -1,6 +1,6 @@
 import { isEnumValue } from '@gamepark/rules-api';
 
-export enum PandaColor {
+export enum PandaiColor {
     Purple = 1,
     Blue,
     Red,
@@ -9,4 +9,4 @@ export enum PandaColor {
     Brown,
 }
 
-export const pandaColors = Object.values(PandaColor).filter<PandaColor>(isEnumValue);
+export const pandaiColors = Object.values(PandaiColor).filter<PandaiColor>(isEnumValue);
