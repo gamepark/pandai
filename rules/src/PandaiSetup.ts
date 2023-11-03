@@ -1,13 +1,12 @@
-import { Location, MaterialGameSetup, listingToList } from '@gamepark/rules-api';
+import { MaterialGameSetup, XYCoordinates, listingToList } from '@gamepark/rules-api';
 import { PandaiOptions } from './PandaiOptions';
 import { PandaiRules } from './PandaiRules';
+import { PlayerColor } from './PlayerColor';
 import { LocationType } from './material/LocationType';
 import { MaterialType } from './material/MaterialType';
-import { PlayerColor } from './PlayerColor';
-import { RuleId } from './rules/RuleId';
 import { forestDeckContent, meadowDeckContent } from './material/PandaiCardType';
 import { pandaiColors } from './material/PandaiColor';
-import { Panda } from './material/Panda';
+import { RuleId } from './rules/RuleId';
 
 /**
  * This class creates a new Game based on the game options
@@ -34,65 +33,50 @@ export class PandaiSetup extends MaterialGameSetup<PlayerColor, MaterialType, Lo
     }
 
     createPandas() {
-        this.createPandasForColor(
-            Panda.Pink,
-            Panda.PinkHat,
-            { type: LocationType.PinkStartGridSquare, x: 2, y: 1 },
-            { type: LocationType.PinkStartGridSquare, x: 1, y: 2 },
-            { type: LocationType.PinkStartGridSquare, x: 1, y: 1 }
-        );
-        this.createPandasForColor(
-            Panda.Black,
-            Panda.BlackHat,
-            { type: LocationType.BlackStartGridSquare, x: 7, y: 1 },
-            { type: LocationType.BlackStartGridSquare, x: 8, y: 2 },
-            { type: LocationType.BlackStartGridSquare, x: 8, y: 1 }
-        );
-        this.createPandasForColor(
-            Panda.Blue,
-            Panda.BlueHat,
-            { type: LocationType.BlueStartGridSquare, x: 7, y: 8 },
-            { type: LocationType.BlueStartGridSquare, x: 8, y: 7 },
-            { type: LocationType.BlueStartGridSquare, x: 8, y: 8 }
-        );
-        this.createPandasForColor(
-            Panda.Orange,
-            Panda.OrangeHat,
-            { type: LocationType.OrangeStartGridSquare, x: 1, y: 7 },
-            { type: LocationType.OrangeStartGridSquare, x: 2, y: 8 },
-            { type: LocationType.OrangeStartGridSquare, x: 1, y: 8 }
-        );
+        for (const player of this.players) {
+            this.createPandasForColor(player);
+        }
     }
 
-    createPandasForColor(
-        color: Panda,
-        coloredHat: Panda,
-        locationFirstPanda: Location,
-        locationSecondPanda: Location,
-        locationHatPanda: Location
-    ) {
-        this.material(MaterialType.Panda).createItems([
-            {
-                id: color,
-                quantity: 3,
-                location: { type: LocationType.PandaStock },
-            },
-            {
-                id: color,
-                location: locationFirstPanda,
-            },
-            {
-                id: color,
-                location: locationSecondPanda,
-            },
-            {
-                id: coloredHat,
-                location: locationHatPanda,
-            },
-        ]);
+    createPandasForColor(color: PlayerColor) {
+        this.material(MaterialType.Panda).createItem({
+            id: color,
+            quantity: 3,
+            location: { type: LocationType.PandaStock, player: color },
+        });
+
+        this.material(MaterialType.Panda).createItems(
+            startLocations[color].map((c, index) => ({
+                id: index === 0 ? color + 10 : color,
+                location: { type: LocationType.GridSquare, ...c },
+            })) //equivalent à c.x c.y destructuration
+        );
     }
 
     start() {
         this.startPlayerTurn(RuleId.PlayerTurn, this.game.players[0]);
     }
 }
+
+const startLocations: Record<PlayerColor, XYCoordinates[]> = {
+    [PlayerColor.Blue]: [
+        { x: 8, y: 8 },
+        { x: 7, y: 8 },
+        { x: 8, y: 7 },
+    ],
+    [PlayerColor.Black]: [
+        { x: 0, y: 0 },
+        { x: 0, y:1 },
+        { x: 1, y: 0 },
+    ],
+    [PlayerColor.Orange]: [
+        { x: 8, y: 0 },
+        { x: 7, y: 0 },
+        { x: 0, y: 7 },
+    ],
+    [PlayerColor.Pink]: [
+        { x: 0, y: 8 },
+        { x: 1, y: 8 },
+        { x: 0, y: 7 },
+    ],
+};

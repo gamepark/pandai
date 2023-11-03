@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { ItemLocator } from '@gamepark/react-game';
+import { ItemLocator, LocationDescription } from '@gamepark/react-game';
 import PlayerColor from '@gamepark/pandai/PlayerColor';
 import { MaterialType } from '@gamepark/pandai/material/MaterialType';
 import { LocationType } from '@gamepark/pandai/material/LocationType';
 import { Location } from '@gamepark/rules-api';
+import { css } from '@emotion/react';
 
 export class GridSquareLocator extends ItemLocator<PlayerColor, MaterialType, LocationType> {
     parentItemType = MaterialType.Board;
-    width = 4.5;
+    locationDescription=new GridSquareDescription();
 
     getPositionOnParent(location: Location) {
         return {
@@ -21,7 +22,8 @@ const squareSize = 9.9;
 const gapSize = 0.5;
 const offset = 4;
 
-export class PinkStartGridSquareLocator extends GridSquareLocator {}
-export class BlackStartGridSquareLocator extends GridSquareLocator {}
-export class BlueStartGridSquareLocator extends GridSquareLocator {}
-export class OrangeStartGridSquareLocator extends GridSquareLocator {}
+class GridSquareDescription extends LocationDescription {
+    width = 4.5;
+    ratio = 1;
+	extraCss=css`background:red`;
+}
