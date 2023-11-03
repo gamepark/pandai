@@ -47,7 +47,7 @@ export class PandaiSetup extends MaterialGameSetup<PlayerColor, MaterialType, Lo
 
         this.material(MaterialType.Panda).createItems(
             startLocations[color].map((c, index) => ({
-                id: index === 0 ? color + 10 : color,
+                id: index === 0 ? color + 10 : color, //the first one is the hat panda
                 location: { type: LocationType.GridSquare, ...c },
             })) //equivalent à c.x c.y destructuration
         );
@@ -60,23 +60,23 @@ export class PandaiSetup extends MaterialGameSetup<PlayerColor, MaterialType, Lo
 
 const startLocations: Record<PlayerColor, XYCoordinates[]> = {
     [PlayerColor.Blue]: [
-        { x: 8, y: 8 },
-        { x: 7, y: 8 },
-        { x: 8, y: 7 },
+        { x: 7, y: 7 },
+        { x: 6, y: 7 },
+        { x: 7, y: 6 },
     ],
     [PlayerColor.Black]: [
-        { x: 0, y: 0 },
-        { x: 0, y:1 },
-        { x: 1, y: 0 },
+        { x: 7, y: 0 },
+        { x: 6, y: 0 },
+        { x: 7, y: 1 },
     ],
     [PlayerColor.Orange]: [
-        { x: 8, y: 0 },
-        { x: 7, y: 0 },
         { x: 0, y: 7 },
+        { x: 1, y: 7 },
+        { x: 0, y: 6 },
     ],
     [PlayerColor.Pink]: [
-        { x: 0, y: 8 },
-        { x: 1, y: 8 },
-        { x: 0, y: 7 },
+        { x: 0, y: 0 },
+        { x: 0, y: 1 },
+        { x: 1, y: 0 },
     ],
 };

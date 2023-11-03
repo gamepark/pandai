@@ -8,22 +8,22 @@ import { css } from '@emotion/react';
 
 export class GridSquareLocator extends ItemLocator<PlayerColor, MaterialType, LocationType> {
     parentItemType = MaterialType.Board;
-    locationDescription=new GridSquareDescription();
+    locationDescription = new GridSquareDescription();
 
     getPositionOnParent(location: Location) {
         return {
-            x: offset + location.x! * squareSize + (location.x! - 1) * gapSize,
-            y: offset + location.y! * squareSize + (location.y! - 1) * gapSize,
+            x: offset + location.x! * squareSize + location.x! * gapSize,
+            y: offset + location.y! * squareSize + location.y! * gapSize,
         };
     }
 }
 
-const squareSize = 9.9;
-const gapSize = 0.5;
-const offset = 4;
+const squareSize = 10;
+const gapSize = 0.21;
+const offset = squareSize + 4.3;
 
 class GridSquareDescription extends LocationDescription {
-    width = 4.5;
+    width = 5;
     ratio = 1;
-	extraCss=css`background:red`;
+    extraCss = css`background:rgba(100,100,100,.1);`;
 }
