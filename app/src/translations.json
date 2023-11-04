@@ -1,6 +1,8 @@
 {
   "en": {
     "translation": {
+      "header.panda.move":"Move a panda to an adjacent square",
+      "header.choose.card.type":"Drop a forest or a meadow card to this square",
       "Menu": "Menu",
       "OK": "OK",
       "Validate": "Validate",

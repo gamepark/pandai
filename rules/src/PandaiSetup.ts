@@ -48,35 +48,35 @@ export class PandaiSetup extends MaterialGameSetup<PlayerColor, MaterialType, Lo
         this.material(MaterialType.Panda).createItems(
             startLocations[color].map((c, index) => ({
                 id: index === 0 ? color + 10 : color, //the first one is the hat panda
-                location: { type: LocationType.GridSquare, ...c },
+                location: { type: LocationType.GridSquare, ...c, z:1 },
             })) //equivalent à c.x c.y destructuration
         );
     }
 
     start() {
-        this.startPlayerTurn(RuleId.PlayerTurn, this.game.players[0]);
+        this.startPlayerTurn(RuleId.MovePanda, this.game.players[0]);
     }
 }
 
-const startLocations: Record<PlayerColor, XYCoordinates[]> = {
-    [PlayerColor.Blue]: [
-        { x: 7, y: 7 },
-        { x: 6, y: 7 },
-        { x: 7, y: 6 },
-    ],
-    [PlayerColor.Black]: [
-        { x: 7, y: 0 },
-        { x: 6, y: 0 },
-        { x: 7, y: 1 },
-    ],
-    [PlayerColor.Orange]: [
-        { x: 0, y: 7 },
-        { x: 1, y: 7 },
-        { x: 0, y: 6 },
-    ],
-    [PlayerColor.Pink]: [
-        { x: 0, y: 0 },
-        { x: 0, y: 1 },
-        { x: 1, y: 0 },
-    ],
+export const startLocations: Record<PlayerColor, XYCoordinates[]> = {
+	[PlayerColor.Blue]: [
+		{ x: 7, y: 7 },
+		{ x: 6, y: 7 },
+		{ x: 7, y: 6 },
+	],
+	[PlayerColor.Black]: [
+		{ x: 7, y: 0 },
+		{ x: 6, y: 0 },
+		{ x: 7, y: 1 },
+	],
+	[PlayerColor.Orange]: [
+		{ x: 0, y: 7 },
+		{ x: 1, y: 7 },
+		{ x: 0, y: 6 },
+	],
+	[PlayerColor.Pink]: [
+		{ x: 0, y: 0 },
+		{ x: 0, y: 1 },
+		{ x: 1, y: 0 },
+	],
 };
