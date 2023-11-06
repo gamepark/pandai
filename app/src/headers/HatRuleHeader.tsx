@@ -1,8 +1,21 @@
 /** @jsxImportSource @emotion/react */
 
-import { useTranslation } from 'react-i18next';
+import { PlayMoveButton, useLegalMoves } from '@gamepark/react-game';
+import { MaterialMove, isEndGame, isStartPlayerTurn } from '@gamepark/rules-api';
+import { Trans, useTranslation } from 'react-i18next';
 
-export const HatRuleHeader = () => { 
+export const HatRuleHeader = () => {
 	const { t } = useTranslation();
-	return <>{t('header.card.hat')}</>
+	const legalMoves = useLegalMoves<MaterialMove>();
+	const passMove = legalMoves.find((move) => isStartPlayerTurn(move) || isEndGame(move));
+
+	if (passMove) {
+		return (
+			<Trans defaults="header.card.hat">
+				<PlayMoveButton move={passMove} />
+			</Trans>
+		);
+	}
+
+	return <>{t('header.card.hat')}</>;
 };

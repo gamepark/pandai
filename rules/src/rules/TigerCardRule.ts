@@ -18,7 +18,7 @@ export class TigerCardRule extends PandaiPlayerTurnRule {
 			if (move.itemType > 10) {
 				console.log('hat panda');
 				//hat panda
-				moves.push(this.rules().startPlayerTurn(RuleId.ChooseNewHatPandaRule, this.player));
+				moves.push(this.rules().startRule(RuleId.ChooseNewHatPandaRule));
 			} else {
 				this.material(MaterialType.Panda).index(move.itemIndex).moveItem({ type: LocationType.PandaStock, player: this.player });
 				moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer));

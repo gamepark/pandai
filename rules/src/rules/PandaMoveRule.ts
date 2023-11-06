@@ -19,15 +19,14 @@ export class PandaMoveRule extends PandaiPlayerTurnRule {
 			.id((id: number) => id % 10 === this.player);
 
 		const mandatoryPanda = this.remind(Memory.MandatoryPanda);
-		console.log("mandatory", mandatoryPanda);
+		console.log('mandatory', mandatoryPanda);
 		if (mandatoryPanda) {
 			myPandasStock = myPandasStock.index(mandatoryPanda);
 		}
 		const excludedPanda = this.remind(Memory.ExcludedPanda);
 		const inCagePanda = this.remind(Memory.IncagePanda);
-		console.log("excluded panda", excludedPanda);
-		console.log("myPandasStock.getIndexes()", myPandasStock.getIndexes());
-		console.log("myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda", myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda))
+		console.log('excluded panda', excludedPanda);
+
 		const myPandasIndexes = myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda);
 
 		myPandasIndexes.forEach((pandaIndex) => {
@@ -70,23 +69,25 @@ export class PandaMoveRule extends PandaiPlayerTurnRule {
 	}
 
 	afterItemMove(move: ItemMove): MaterialMove[] {
-		console.log("PandaMoveRule");
+		console.log('PandaMoveRule');
 		const moves: MaterialMove[] = [];
 		if (isMoveItem(move) && move.itemType === MaterialType.Panda) {
-			this.removeExistingPandas(move.location);
+			moves.push(...this.removeExistingPandas(move.location));
 			if (this.squareHasNoCard(move.location)) {
 				//console.log("tirage de carte")
 				this.memorize(Memory.LastPandaMove, move);
 				//moves.push(this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).deck().dealOne(move.location));
-				moves.push(this.rules().startPlayerTurn(RuleId.ChooseCardType, this.player));
+				moves.push(this.rules().startRule(RuleId.ChooseCardType));
 			} else {
 				const card = this.getCardOnSquare(move.location);
 				moves.push(this.rules().startRule(cardRuleAssoc[card?.id]));
 				//moves.push(this.forget(Memory.MandatoryPanda))
 				//moves.push(this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer));
 			}
-			//this.forget(Memory.MandatoryPanda);
-			//this.forget(Memory.ExcludedPanda);
+
+			//nothing else here than Memory managing. Everything should be pushed as a move
+			if (move.itemIndex == this.remind(Memory.ExcludedPanda)) this.forget(Memory.ExcludedPanda);
+			if (move.itemIndex == this.remind(Memory.MandatoryPanda)) this.forget(Memory.MandatoryPanda);
 		}
 
 		return moves;
@@ -94,6 +95,11 @@ export class PandaMoveRule extends PandaiPlayerTurnRule {
 
 	//todo meilleure facon d’écrire ca ?
 	removeExistingPandas(moveLocation: Location) {
+		return this.material(MaterialType.Panda)
+			.location(({ type, x, y }) => type === LocationType.GridSquare && x === moveLocation.x && y === moveLocation.y)
+			.id((id: number) => id % 10 !== this.player)
+			.moveItems((item) => ({ type: LocationType.PandaStock, player: item.id % 10 }));
+
 		for (const player of this.game.players) {
 			if (player !== this.player) {
 				const otherPandas = this.material(MaterialType.Panda)

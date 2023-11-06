@@ -12,8 +12,8 @@ import { PandaRules } from './PandaRules';
 import { Panda } from '@gamepark/pandai/material/Panda';
 
 class PandaDescription extends TokenDescription {
-    width = 2.9;
-    height = 4.77;
+    width = 2.9/1.6;
+    height = 4.77/1.6;
 
     images = {
         [Panda.Black]: black,

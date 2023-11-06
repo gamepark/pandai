@@ -11,6 +11,6 @@ export class FruitsCardRule extends PandaiPlayerTurnRule {
 	onRuleStart(_move: RuleMove) {
         console.log("FruitsCardRule excludes", this.remind(Memory.LastPandaMove).itemIndex);
 		this.memorize(Memory.ExcludedPanda, this.remind(Memory.LastPandaMove).itemIndex);
-		return [this.rules().startPlayerTurn(RuleId.MovePanda, this.player)];
+		return [this.rules().startRule(RuleId.MovePanda)];
 	}
 }

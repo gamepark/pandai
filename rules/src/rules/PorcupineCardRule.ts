@@ -14,6 +14,6 @@ export class PorcupineCardRule extends PandaiPlayerTurnRule {
 		if (isMoveItem(pandaMove)) {
 			this.memorize(Memory.MandatoryPanda, pandaMove.itemIndex);
 		}
-		return [this.rules().startPlayerTurn(RuleId.MovePanda, this.player)];
+		return [this.rules().startRule(RuleId.MovePanda)];
 	}
 }
