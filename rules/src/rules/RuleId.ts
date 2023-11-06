@@ -16,6 +16,7 @@ export enum RuleId {
 	BluePandaiRule,
 	GreenPandaiRule,
 	BrownPandaiRule,
+	ChooseNewHatPandaRule,
 }
 
 export const cardRuleAssoc: Record<PandaiCardType, RuleId> = {

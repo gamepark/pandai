@@ -1,7 +1,8 @@
-import { MaterialMove, PlayerTurnRule } from '@gamepark/rules-api';
+import { MaterialMove } from '@gamepark/rules-api';
+import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId } from './RuleId';
 
-export class ChairCardRule extends PlayerTurnRule {
+export class ChairCardRule extends PandaiPlayerTurnRule {
 	getPlayerMoves(): MaterialMove<number, number, number>[] {
 		return [];
 	}

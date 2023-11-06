@@ -1,10 +1,11 @@
-import { ItemMove, Location, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api';
+import { ItemMove, Location, MaterialMove } from '@gamepark/rules-api';
 import { LocationType } from '../material/LocationType';
 import { MaterialType } from '../material/MaterialType';
 import { Memory } from './Memory';
+import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { cardRuleAssoc } from './RuleId';
 
-export class ChooseCardTypeRule extends PlayerTurnRule {
+export class ChooseCardTypeRule extends PandaiPlayerTurnRule {
 	getPlayerMoves(): MaterialMove<number, number, number>[] {
 		return [
 			this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).deck().dealOne(this.remind(Memory.LastPandaMove).location),

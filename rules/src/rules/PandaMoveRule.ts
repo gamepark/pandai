@@ -1,14 +1,15 @@
-import { ItemMove, Location, Material, MaterialItem, MaterialMove, PlayerTurnRule, XYCoordinates, isMoveItem } from '@gamepark/rules-api';
+import { ItemMove, Location, Material, MaterialItem, MaterialMove, XYCoordinates, isMoveItem } from '@gamepark/rules-api';
 import { LocationType } from '../material/LocationType';
 import { MaterialType } from '../material/MaterialType';
 //import { RuleId } from './RuleId';
 //import { PandaiCardType } from '../material/PandaiCardType';
 import { startLocations } from '../PandaiSetup';
 import { Memory } from './Memory';
+import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId, cardRuleAssoc } from './RuleId';
 //import { startLocations } from '../PandaiSetup';
 
-export class PandaMoveRule extends PlayerTurnRule {
+export class PandaMoveRule extends PandaiPlayerTurnRule {
 	getPlayerMoves() {
 		const moves: MaterialMove[] = [];
 
@@ -24,6 +25,9 @@ export class PandaMoveRule extends PlayerTurnRule {
 		}
 		const excludedPanda = this.remind(Memory.ExcludedPanda);
 		const inCagePanda = this.remind(Memory.IncagePanda);
+		console.log("excluded panda", excludedPanda);
+		console.log("myPandasStock.getIndexes()", myPandasStock.getIndexes());
+		console.log("myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda", myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda))
 		const myPandasIndexes = myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda);
 
 		myPandasIndexes.forEach((pandaIndex) => {
@@ -78,8 +82,11 @@ export class PandaMoveRule extends PlayerTurnRule {
 			} else {
 				const card = this.getCardOnSquare(move.location);
 				moves.push(this.rules().startRule(cardRuleAssoc[card?.id]));
+				//moves.push(this.forget(Memory.MandatoryPanda))
 				//moves.push(this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer));
 			}
+			//this.forget(Memory.MandatoryPanda);
+			//this.forget(Memory.ExcludedPanda);
 		}
 
 		return moves;

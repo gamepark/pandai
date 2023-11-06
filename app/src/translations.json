@@ -3,6 +3,7 @@
     "translation": {
       "header.panda.move":"Move a panda to an adjacent square",
       "header.choose.card.type":"Drop a forest or a meadow card to this square",
+      "header.card.hat":"You can swap your hat panda with another panda",
       "Menu": "Menu",
       "OK": "OK",
       "Validate": "Validate",

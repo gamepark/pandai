@@ -1,8 +1,9 @@
-import { ItemMove, MaterialMove, PlayerTurnRule, RuleMove, isMoveItem } from '@gamepark/rules-api';
+import { ItemMove, MaterialMove, RuleMove, isMoveItem } from '@gamepark/rules-api';
 import { Memory } from './Memory';
+import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId } from './RuleId';
 
-export class CageCardRule extends PlayerTurnRule {
+export class CageCardRule extends PandaiPlayerTurnRule {
 	getPlayerMoves(): MaterialMove<number, number, number>[] {
 		return [];
 	}

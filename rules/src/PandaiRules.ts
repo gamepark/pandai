@@ -12,6 +12,7 @@ import { HatCardRule } from './rules/HatCardRule';
 import { FruitsCardRule } from './rules/FruitsCardRule';
 import { ChooseCardTypeRule } from './rules/ChooseCardTypeRule';
 import { PorcupineCardRule } from './rules/PorcupineCardRule';
+import { ChooseNewHatPandaRule } from './rules/ChooseNewHatPandaRule';
 
 /**
  * This class implements the rules of the board game.
@@ -20,6 +21,8 @@ import { PorcupineCardRule } from './rules/PorcupineCardRule';
 export class PandaiRules extends HiddenMaterialRules<PlayerColor, MaterialType, LocationType> {
 	rules = {
 		[RuleId.MovePanda]: PandaMoveRule,
+		[RuleId.ChooseNewHatPandaRule]: ChooseNewHatPandaRule,
+
 		[RuleId.ChooseCardType]: ChooseCardTypeRule,
 		[RuleId.ChairCardRule]: ChairCardRule,
 		[RuleId.PorcupineCardRule]: PorcupineCardRule,
@@ -28,7 +31,9 @@ export class PandaiRules extends HiddenMaterialRules<PlayerColor, MaterialType, 
 		[RuleId.HatRule]: HatCardRule,
 		[RuleId.TigerCardRule]: TigerCardRule,
 		[RuleId.WhiteTigerCardRule]: WhiteTigerCardRule,
+		
 		[RuleId.BluePandaiRule]: PandaiCardRule,
+		[RuleId.YellowPandaiRule]: PandaiCardRule,
 		[RuleId.BrownPandaiRule]: PandaiCardRule,
 		[RuleId.GreenPandaiRule]: PandaiCardRule,
 		[RuleId.PurplePandaiRule]: PandaiCardRule,

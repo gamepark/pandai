@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import GameDisplay from './GameDisplay'
 import { PandaMoveHeader } from './headers/PandaMoveHeader';
 import { ChooseCardTypeHeader } from './headers/ChooseCardTypeHeader'
+import { HatRuleHeader } from './headers/HatRuleHeader'
 
 export default function App() {
 	const game = useGame<MaterialGame>();
@@ -30,4 +31,5 @@ export default function App() {
 const RulesHeaders: Partial<Record<RuleId, () => ReactJSXElement>> = {
 	[RuleId.MovePanda]: PandaMoveHeader,
 	[RuleId.ChooseCardType]: ChooseCardTypeHeader,
+	[RuleId.HatRule]: HatRuleHeader,
 };
