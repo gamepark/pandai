@@ -1,16 +1,13 @@
-import { MaterialMove, RuleMove } from '@gamepark/rules-api';
 import { Memory } from './Memory';
-import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
-import { RuleId } from './RuleId';
+import { MovePandaRule } from './MovePandaRule';
 
-export class FruitsCardRule extends PandaiPlayerTurnRule {
-	getPlayerMoves(): MaterialMove<number, number, number>[] {
-		return [];
-	}
-
-	onRuleStart(_move: RuleMove) {
-        console.log("FruitsCardRule excludes", this.remind(Memory.LastPandaMove).itemIndex);
-		this.memorize(Memory.ExcludedPanda, this.remind(Memory.LastPandaMove).itemIndex);
-		return [this.rules().startRule(RuleId.MovePanda)];
+export class FruitsCardRule extends MovePandaRule {
+	getMoveablePandaIndexes() {
+		console.log("LastPandaMove", this.remind(Memory.LastPandaMove))
+		return this.withoutInCagePanda(
+			this.getAllPandas()
+				.getIndexes()
+				.filter((i) => i !== this.remind(Memory.LastPandaMove).itemIndex)
+		);
 	}
 }

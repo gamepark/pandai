@@ -2,10 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 
-export const PandaMoveHeader = () => { 
+export const MovePandaHeader = () => {
 	const { t } = useTranslation();
-	return <>{t('header.panda.move')}</>
+	return <>{t('header.panda.move')}</>;
 };
-
-
-

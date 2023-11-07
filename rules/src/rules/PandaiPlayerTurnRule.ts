@@ -16,4 +16,10 @@ export abstract class PandaiPlayerTurnRule extends PlayerTurnRule {
 			.location(LocationType.GridSquare)
 			.id((id: number) => id % OFFSET_INDEX === this.player && id < OFFSET_INDEX);
 	}
+
+	getAllPandas(): Material {
+		return this.material(MaterialType.Panda)
+			.location(LocationType.GridSquare)
+			.id((id: number) => id % OFFSET_INDEX === this.player);
+	}
 }

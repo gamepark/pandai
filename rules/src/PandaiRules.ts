@@ -2,7 +2,7 @@ import { HiddenMaterialRules, PositiveSequenceStrategy, hideItemId } from '@game
 import { LocationType } from './material/LocationType';
 import { MaterialType } from './material/MaterialType';
 import { PlayerColor } from './PlayerColor';
-import { PandaMoveRule } from './rules/PandaMoveRule';
+import { MovePandaRule } from './rules/MovePandaRule';
 import { RuleId } from './rules/RuleId';
 import { ChairCardRule } from './rules/ChairCardRule';
 import { CageCardRule } from './rules/CageCardRule';
@@ -20,7 +20,7 @@ import { ChooseNewHatPandaRule } from './rules/ChooseNewHatPandaRule';
  */
 export class PandaiRules extends HiddenMaterialRules<PlayerColor, MaterialType, LocationType> {
 	rules = {
-		[RuleId.MovePanda]: PandaMoveRule,
+		[RuleId.MovePanda]: MovePandaRule,
 		[RuleId.ChooseNewHatPandaRule]: ChooseNewHatPandaRule,
 
 		[RuleId.ChooseCardType]: ChooseCardTypeRule,
@@ -31,7 +31,7 @@ export class PandaiRules extends HiddenMaterialRules<PlayerColor, MaterialType, 
 		[RuleId.HatRule]: HatCardRule,
 		[RuleId.TigerCardRule]: TigerCardRule,
 		[RuleId.WhiteTigerCardRule]: WhiteTigerCardRule,
-		
+
 		[RuleId.BluePandaiRule]: PandaiCardRule,
 		[RuleId.YellowPandaiRule]: PandaiCardRule,
 		[RuleId.BrownPandaiRule]: PandaiCardRule,

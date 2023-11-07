@@ -5,9 +5,11 @@ import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, Menu, 
 import { MaterialGame } from '@gamepark/rules-api'
 import { useEffect, useState } from 'react'
 import GameDisplay from './GameDisplay'
-import { PandaMoveHeader } from './headers/PandaMoveHeader';
-import { ChooseCardTypeHeader } from './headers/ChooseCardTypeHeader'
-import { HatRuleHeader } from './headers/HatRuleHeader'
+import { MovePandaHeader } from './headers/MovePandaHeader';
+import { ChooseCardTypeHeader } from './headers/ChooseCardTypeHeader';
+import { HatRuleHeader } from './headers/HatRuleHeader';
+import { PorcupineRuleHeader } from './headers/PorcupineRuleHeader'
+import { FruitsRuleHeader } from './headers/FruitsRuleHeader'
 
 export default function App() {
 	const game = useGame<MaterialGame>();
@@ -19,7 +21,7 @@ export default function App() {
 	return (
 		<>
 			<GameDisplay />
-			<LoadingScreen display={loading} author="Igor Polouchine" artist="Paul Mafayon" publisher="Origames" developer="Séverine Kamycki (mizutismask)" />
+			<LoadingScreen display={loading} author="Igor Polouchine" artist="Paul Mafayon" publisher="Origames" developer="Séverine Kamycki (Mizutismask)" />
 			<MaterialHeader rulesStepsHeaders={RulesHeaders} loading={loading} />
 			<Menu />
 			<FailuresDialog />
@@ -29,7 +31,9 @@ export default function App() {
 }
 
 const RulesHeaders: Partial<Record<RuleId, () => ReactJSXElement>> = {
-	[RuleId.MovePanda]: PandaMoveHeader,
+	[RuleId.MovePanda]: MovePandaHeader,
+	[RuleId.PorcupineCardRule]: PorcupineRuleHeader,
+	[RuleId.FruitsRule]: FruitsRuleHeader,
 	[RuleId.ChooseCardType]: ChooseCardTypeHeader,
 	[RuleId.HatRule]: HatRuleHeader,
 };

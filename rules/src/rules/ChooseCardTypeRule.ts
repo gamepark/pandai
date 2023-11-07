@@ -14,7 +14,7 @@ export class ChooseCardTypeRule extends PandaiPlayerTurnRule {
 	}
 
 	afterItemMove(_move: ItemMove): MaterialMove[] {
-		console.log('ChooseCardType');
+		//console.log('ChooseCardType');
 		const moves: MaterialMove[] = [];
 		const card = this.getCardOnSquare(this.remind(Memory.LastPandaMove).location);
 		this.memorize(Memory.LastCardDrawn, card);

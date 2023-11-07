@@ -11,11 +11,11 @@ export const ChooseCardTypeHeader = () => {
 	const rules = useRules<PandaiRules>()!;
 	const legalMoves = useLegalMoves<MaterialMove>()
 	const playerName = usePlayerName(rules.game.rule!.player!);
-	
-	if (rules.game.rule?.player === playerId) {
-	}
 	if (!legalMoves.length) {
 		return <>{t('header.turn', { player: playerName })}</>;
+	}
+	
+	if (rules.game.rule?.player === playerId) {
 	}
 	return <>{t('header.choose.card.type')}</>;
 };

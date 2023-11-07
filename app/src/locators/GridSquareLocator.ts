@@ -25,7 +25,16 @@ export class GridSquareLocator extends ItemLocator<PlayerColor, MaterialType, Lo
 	Adds x and y positions to what’s returned by getPositionOnParent
 	*/
 	getPosition(_item: MaterialItem<PlayerColor, LocationType>, context: ItemContext<PlayerColor, MaterialType, LocationType>): Coordinates {
-		return { x: 0, y: 0, z: context.type === MaterialType.Panda ? 0.2 : 0.1 };
+		return this.getCorners(_item, context);
+	}
+
+	getCorners(_item: MaterialItem, context: ItemContext): Coordinates {
+		if (context.type === MaterialType.Panda) {
+			//console.log("displayindex",context,item )
+			return { x: context.index % 2 == 0 ? 1 : -1, y: context.index < 2 ? -1 : 1, z: 0.2 };
+		} else {
+			return { x: 0, y: 0, z: 0.1 };
+		}
 	}
 }
 

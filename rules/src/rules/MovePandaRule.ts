@@ -1,52 +1,31 @@
-import { ItemMove, Location, Material, MaterialItem, MaterialMove, XYCoordinates, isMoveItem } from '@gamepark/rules-api';
+import { ItemMove, Location, MaterialItem, MaterialMove, XYCoordinates, isMoveItem } from '@gamepark/rules-api';
+import { startLocations } from '../PandaiSetup';
 import { LocationType } from '../material/LocationType';
 import { MaterialType } from '../material/MaterialType';
-//import { RuleId } from './RuleId';
-//import { PandaiCardType } from '../material/PandaiCardType';
-import { startLocations } from '../PandaiSetup';
 import { Memory } from './Memory';
 import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId, cardRuleAssoc } from './RuleId';
-//import { startLocations } from '../PandaiSetup';
 
-export class PandaMoveRule extends PandaiPlayerTurnRule {
+export class MovePandaRule extends PandaiPlayerTurnRule {
+	/*onRuleStart(move: RuleMove) {
+		if (move.type === RuleMoveType.StartPlayerTurn) {
+		  this.memorize(Memory.IncagePanda, 1)
+		}
+		return []
+	  }*/
+
 	getPlayerMoves() {
 		const moves: MaterialMove[] = [];
 
-		//if nothing specified, we take all the panda of my color
-		let myPandasStock: Material = this.material(MaterialType.Panda)
-			.location(LocationType.GridSquare)
-			.id((id: number) => id % 10 === this.player);
-
-		const mandatoryPanda = this.remind(Memory.MandatoryPanda);
-		console.log('mandatory', mandatoryPanda);
-		if (mandatoryPanda) {
-			myPandasStock = myPandasStock.index(mandatoryPanda);
-		}
-		const excludedPanda = this.remind(Memory.ExcludedPanda);
-		const inCagePanda = this.remind(Memory.IncagePanda);
-		console.log('excluded panda', excludedPanda);
-
-		const myPandasIndexes = myPandasStock.getIndexes().filter((index) => index !== excludedPanda && index !== inCagePanda);
-
-		myPandasIndexes.forEach((pandaIndex) => {
-			console.log('panda', pandaIndex);
-			const adjacent = this.getAdjacentSquares(myPandasStock.index(pandaIndex).getItem()!);
-			adjacent.forEach((adj) => {
-				console.log('square', adj);
-				moves.push(myPandasStock.index(pandaIndex).moveItem(adj));
-			});
+		this.getMoveablePandaIndexes().forEach((pandaIndex) => {
+			console.log('PANDA', pandaIndex);
+			moves.push(
+				...this.getAdjacentSquares(this.getAllPandas().index(pandaIndex).getItem()!).map((adj) => this.getAllPandas().index(pandaIndex).moveItem(adj))
+			);
 		});
-
-		//moves.push(
-		/*	this.material(MaterialType.Panda)
-			.location(LocationType.GridSquare)
-			.id((id: number) => id % 10 === this.player)
-			.moveItems({ type: LocationType.GridSquare, x: 3, y: 3 });*/
-		//);
-
 		return moves;
 	}
+
 	getAdjacentSquares(panda: MaterialItem): Location[] {
 		return this.getValidSquares([
 			{ type: LocationType.GridSquare, x: panda.location.x! - 1, y: panda.location.y! - 1 },
@@ -81,36 +60,21 @@ export class PandaMoveRule extends PandaiPlayerTurnRule {
 			} else {
 				const card = this.getCardOnSquare(move.location);
 				moves.push(this.rules().startRule(cardRuleAssoc[card?.id]));
-				//moves.push(this.forget(Memory.MandatoryPanda))
-				//moves.push(this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer));
 			}
 
 			//nothing else here than Memory managing. Everything should be pushed as a move
-			if (move.itemIndex == this.remind(Memory.ExcludedPanda)) this.forget(Memory.ExcludedPanda);
-			if (move.itemIndex == this.remind(Memory.MandatoryPanda)) this.forget(Memory.MandatoryPanda);
+
+			if (move.itemIndex !== this.remind(Memory.IncagePanda)) this.forget(Memory.IncagePanda, this.player);
 		}
 
 		return moves;
 	}
 
-	//todo meilleure facon d’écrire ca ?
 	removeExistingPandas(moveLocation: Location) {
 		return this.material(MaterialType.Panda)
 			.location(({ type, x, y }) => type === LocationType.GridSquare && x === moveLocation.x && y === moveLocation.y)
 			.id((id: number) => id % 10 !== this.player)
 			.moveItems((item) => ({ type: LocationType.PandaStock, player: item.id % 10 }));
-
-		for (const player of this.game.players) {
-			if (player !== this.player) {
-				const otherPandas = this.material(MaterialType.Panda)
-					.location(LocationType.GridSquare)
-					.id((id: number) => id % 10 === player)
-					.filter((c) => c.location.x === moveLocation.x && c.location.y === moveLocation.y);
-				if (otherPandas.getQuantity() !== 0) {
-					otherPandas.moveItem({ type: LocationType.PandaStock, player: player });
-				}
-			}
-		}
 	}
 
 	squareHasNoCard(location: Location) {
@@ -137,5 +101,15 @@ export class PandaMoveRule extends PandaiPlayerTurnRule {
 				.filter((c) => c.location.x === location.x && c.location.y === location.y)
 				.getItem()
 		);
+	}
+
+	getMoveablePandaIndexes() {
+		return this.withoutInCagePanda(this.getAllPandas().getIndexes());
+	}
+
+	withoutInCagePanda(pandaIndexes: number[]) {
+		const inCagePanda = this.remind(Memory.IncagePanda, this.player);
+		console.log('inCagePanda panda', inCagePanda);
+		return pandaIndexes.filter((i) => i !== inCagePanda);
 	}
 }

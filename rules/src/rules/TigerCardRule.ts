@@ -4,6 +4,7 @@ import { MaterialType } from '../material/MaterialType';
 import { Memory } from './Memory';
 import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId } from './RuleId';
+import { PandaiCardType } from '../material/PandaiCardType';
 
 export class TigerCardRule extends PandaiPlayerTurnRule {
 	getPlayerMoves(): MaterialMove<number, number, number>[] {
@@ -32,7 +33,7 @@ export class WhiteTigerCardRule extends TigerCardRule {
 		console.log('WhiteTigerCardRule', _move);
 		const moves: MaterialMove[] = [];
 		this.removeNormalPandaOrChooseNewHat(moves);
-		this.material(MaterialType.ForestCard).id(this.remind(Memory.LastCardDrawn)).moveItem({ type: LocationType.ForestDeck });
+		this.material(MaterialType.ForestCard).id(PandaiCardType.WHITE_TIGER).moveItem({ type: LocationType.ForestDeck });
 		this.material(MaterialType.ForestCard).shuffle();
 		return moves;
 	}

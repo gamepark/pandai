@@ -1,4 +1,4 @@
-import { ItemMove, MaterialMove, RuleMove, isMoveItem } from '@gamepark/rules-api';
+import { MaterialMove, RuleMove } from '@gamepark/rules-api';
 import { Memory } from './Memory';
 import { PandaiPlayerTurnRule } from './PandaiPlayerTurnRule';
 import { RuleId } from './RuleId';
@@ -9,10 +9,8 @@ export class CageCardRule extends PandaiPlayerTurnRule {
 	}
 
 	onRuleStart(_move: RuleMove) {
-		const pandaMove: ItemMove = this.remind(Memory.LastPandaMove);
-		if (isMoveItem(pandaMove)) {
-			this.memorize(Memory.IncagePanda, pandaMove.itemIndex);
-		}
+		this.memorize(Memory.IncagePanda, this.remind(Memory.LastPandaMove).itemIndex, this.player);
+		console.log("memorize IncagePanda",  this.remind(Memory.IncagePanda, this.player));
 		return [this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer)];
 	}
 }
