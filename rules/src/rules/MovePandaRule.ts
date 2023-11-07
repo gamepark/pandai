@@ -18,7 +18,7 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 		const moves: MaterialMove[] = [];
 
 		this.getMoveablePandaIndexes().forEach((pandaIndex) => {
-			console.log('PANDA', pandaIndex);
+			console.log('PANDA', pandaIndex, this.getAllPandas().index(pandaIndex).getItem());
 			moves.push(
 				...this.getAdjacentSquares(this.getAllPandas().index(pandaIndex).getItem()!).map((adj) => this.getAllPandas().index(pandaIndex).moveItem(adj))
 			);
@@ -110,6 +110,7 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 	withoutInCagePanda(pandaIndexes: number[]) {
 		const inCagePanda = this.remind(Memory.IncagePanda, this.player);
 		console.log('inCagePanda panda', inCagePanda);
+		console.log('withoutInCagePanda',  pandaIndexes.filter((i) => i !== inCagePanda));
 		return pandaIndexes.filter((i) => i !== inCagePanda);
 	}
 }

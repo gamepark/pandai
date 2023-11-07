@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import black from '../images/pandas/red-panda.png';
-import blackHat from '../images/pandas/red-panda.png';
+import black from '../images/pandas/black-panda.png';
+import blackHat from '../images/pandas/black-hat-panda.png';
 import blue from '../images/pandas/blue-panda.png';
-import blueHat from '../images/pandas/blue-panda.png';
-import orange from '../images/pandas/yellow-panda.png';
-import orangeHat from '../images/pandas/yellow-panda.png';
-import pink from '../images/pandas/brown-panda.png';
-import pinkHat from '../images/pandas/brown-panda.png';
+import blueHat from '../images/pandas/blue-hat-panda.png';
+import orange from '../images/pandas/orange-hat-panda.png';
+import orangeHat from '../images/pandas/orange-panda.png';
+import pink from '../images/pandas/pink-panda.png';
+import pinkHat from '../images/pandas/pink-hat-panda.png';
 import { TokenDescription } from '@gamepark/react-game';
 import { PandaRules } from './PandaRules';
 import { Panda } from '@gamepark/pandai/material/Panda';
 
 class PandaDescription extends TokenDescription {
-    width = 2.9/1.6;
-    height = 4.77/1.6;
+    width = 2.6;
+    height = 2.8;
 
     images = {
         [Panda.Black]: black,

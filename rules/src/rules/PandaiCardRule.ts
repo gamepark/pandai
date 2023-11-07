@@ -17,7 +17,7 @@ export class PandaiCardRule extends PandaiPlayerTurnRule {
 		const pandaMoved: ItemMove = this.remind(Memory.LastPandaMove);
 		const pandaiCard: ItemMove = this.remind(Memory.LastCardDrawn);
 		const existingToken = this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenEarnedStock).player(this.player).id(pandaiCard.itemType).getItem();
-		if (isMoveItem(pandaMoved) && pandaMoved.itemType > 10 && !existingToken) {
+		if (isMoveItem(pandaMoved) && this.material(MaterialType.Panda).index(pandaMoved.itemIndex).getItem()!.id > 10  && !existingToken) {
 			moves.push(this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenStock).moveItem({type:LocationType.PandaiTokenEarnedStock, player:this.player}));
 			moves.push(this.material(MaterialType.Panda).location(LocationType.PandaStock).player(this.player).moveItem({...pandaMoved.location, player:this.player}));
 		}
