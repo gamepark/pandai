@@ -43,8 +43,17 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 
 	getValidSquares(locations: Location[]) {
 		const inGrid = locations.filter((loc) => loc.x! >= 0 && loc.y! >= 0 && loc.x! < 8 && loc.y! < 8);
-		const notStartSquare = inGrid.filter((loc) => !startLocations[this.player].some((start: XYCoordinates) => start.x === loc.x && start.y === loc.y));
-		return notStartSquare;
+		const notStartSquare = inGrid.filter(
+			(loc) =>
+				!Object.values(startLocations)
+					.flatMap((s) => s)
+					.some((start: XYCoordinates) => start.x === loc.x && start.y === loc.y)
+		);
+		const myPandaLocations = this.getAllPandas()
+			.getItems()
+			.map((p) => p.location);
+		const notContainingMyPanda = notStartSquare.filter((loc) => !myPandaLocations.some((myPandaLoc) => myPandaLoc.x === loc.x && myPandaLoc.y === loc.y));
+		return notContainingMyPanda;
 	}
 
 	afterItemMove(move: ItemMove): MaterialMove[] {
@@ -110,7 +119,10 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 	withoutInCagePanda(pandaIndexes: number[]) {
 		const inCagePanda = this.remind(Memory.IncagePanda, this.player);
 		console.log('inCagePanda panda', inCagePanda);
-		console.log('withoutInCagePanda',  pandaIndexes.filter((i) => i !== inCagePanda));
+		console.log(
+			'withoutInCagePanda',
+			pandaIndexes.filter((i) => i !== inCagePanda)
+		);
 		return pandaIndexes.filter((i) => i !== inCagePanda);
 	}
 }
