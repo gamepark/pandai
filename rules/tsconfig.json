@@ -1,15 +1,13 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "lib": [
-      "es2019"
-    ],
-    "declaration": true,
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["es2019"],
+        "declaration": true,
+        "outDir": "dist",
+        "rootDir": "src"
+    },
+    "include": ["src", "../app/src/material/PandaiCardDescription.tsx"],
+    "exclude": ["node_modules"]
 }
