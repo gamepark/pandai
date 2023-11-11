@@ -23,6 +23,9 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 				...this.getAdjacentSquares(this.getAllPandas().index(pandaIndex).getItem()!).map((adj) => this.getAllPandas().index(pandaIndex).moveItem(adj))
 			);
 		});
+		if(moves.length===0){
+			moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer))
+		}
 		return moves;
 	}
 
@@ -61,13 +64,14 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 		const moves: MaterialMove[] = [];
 		if (isMoveItem(move) && move.itemType === MaterialType.Panda) {
 			moves.push(...this.removeExistingPandas(move.location));
+			this.memorize(Memory.LastPandaMove, move);
 			if (this.squareHasNoCard(move.location)) {
 				//console.log("tirage de carte")
-				this.memorize(Memory.LastPandaMove, move);
 				//moves.push(this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).deck().dealOne(move.location));
 				moves.push(this.rules().startRule(RuleId.ChooseCardType));
 			} else {
 				const card = this.getCardOnSquare(move.location);
+				this.memorize(Memory.LastCardDrawn, card);
 				moves.push(this.rules().startRule(cardRuleAssoc[card?.id]));
 			}
 
