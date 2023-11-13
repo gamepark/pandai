@@ -14,12 +14,14 @@ export class HatCardRule extends PandaiPlayerTurnRule {
 		if (isMoveItem(_move)) {
 			const itemToMove = this.material(MaterialType.Panda).index(_move.itemIndex).getItem();
 			this.memorize(Memory.PandaLocationBeforeSwap, itemToMove?.location);
+			//console.log("PandaLocationBeforeSwap", itemToMove?.location)
 			this.memorize(
 				Memory.OtherPandaToSwapIndex,
 				this.getAllPandas()
 					.location(({ type, x, y }) => type === _move.location.type && x === _move.location.x && y === _move.location.y)
 					.getIndex()
 			);
+			//console.log("OtherPandaToSwapIndex",this.remind(Memory.OtherPandaToSwapIndex))
 		}
 		return [];
 	}
@@ -28,6 +30,7 @@ export class HatCardRule extends PandaiPlayerTurnRule {
 		const moves: MaterialMove[] = [];
 		const move = this.remind(Memory.LastPandaMove);
 		if (isMoveItem(move) && move.itemType === MaterialType.Panda) {
+			//console.log("last panda move", move, this.material(MaterialType.Panda).index(move.itemIndex).getItem())
 			if (this.material(MaterialType.Panda).index(move.itemIndex).getItem()!.id > 10) {
 				//hat panda, can swap his location with any panda
 				moves.push(...this.getNormalPandas().moveItems(move.location));

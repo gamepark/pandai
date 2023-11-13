@@ -31,7 +31,7 @@ export class GridSquareLocator extends ItemLocator<PlayerColor, MaterialType, Lo
 	getCorners(_item: MaterialItem, context: ItemContext): Coordinates {
 		if (context.type === MaterialType.Panda) {
 			//console.log("displayindex",context,item )
-			return { x: context.index % 2 == 0 ? 1 : -1, y: context.index < 2 ? -1 : 1, z: 0.2 };
+			return { x: context.index % 2 === 0 ? 1 : -1, y: context.index < 2 ? -1 : 1, z: 0.2 };
 		} else {
 			return { x: 0, y: 0, z: 0.1 };
 		}

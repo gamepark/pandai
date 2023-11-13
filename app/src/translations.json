@@ -7,6 +7,7 @@
       "header.turn": "It is {player}’s turn",
       "header.porcupine.move": "You can move the panda on the porcupine once again",
       "header.fruits.move": "You can move another panda",
+      "header.choose.hat.panda.move": "Select the panda that will become your new hat panda",
       "Menu": "Menu",
       "OK": "OK",
       "Validate": "Validate",

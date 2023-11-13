@@ -10,6 +10,7 @@ import { ChooseCardTypeHeader } from './headers/ChooseCardTypeHeader';
 import { HatRuleHeader } from './headers/HatRuleHeader';
 import { PorcupineRuleHeader } from './headers/PorcupineRuleHeader'
 import { FruitsRuleHeader } from './headers/FruitsRuleHeader'
+import { ChooseNewHatPandaHeader } from './headers/ChoosePandaHatHeader'
 
 export default function App() {
 	const game = useGame<MaterialGame>();
@@ -36,4 +37,5 @@ const RulesHeaders: Partial<Record<RuleId, () => ReactJSXElement>> = {
 	[RuleId.FruitsRule]: FruitsRuleHeader,
 	[RuleId.ChooseCardType]: ChooseCardTypeHeader,
 	[RuleId.HatRule]: HatRuleHeader,
+	[RuleId.ChooseNewHatPandaRule]: ChooseNewHatPandaHeader,
 };

@@ -43,7 +43,7 @@ export class WhiteTigerCardRule extends TigerCardRule {
 		console.log('WhiteTigerCardRule', _move)
 		const moves: MaterialMove[] = []
 		moves.push(this.material(MaterialType.ForestCard).id(PandaiCardType.WHITE_TIGER).moveItem({ type: LocationType.ForestDeck }))
-		this.material(MaterialType.ForestCard).shuffle()
+		moves.push(this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).shuffle())
 		moves.push(...super.onRuleStart(_move))
 		return moves
 	}

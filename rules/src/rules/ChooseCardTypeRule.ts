@@ -13,7 +13,7 @@ export class ChooseCardTypeRule extends PandaiPlayerTurnRule {
 			moves.push(this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).deck().dealOne(this.remind(Memory.LastPandaMove).location))
 		}
 		if (this.material(MaterialType.MeadowCard).location(LocationType.MeadowDeck).getItems().length > 0) {
-			this.material(MaterialType.MeadowCard).location(LocationType.MeadowDeck).deck().dealOne(this.remind(Memory.LastPandaMove).location)
+			moves.push(this.material(MaterialType.MeadowCard).location(LocationType.MeadowDeck).deck().dealOne(this.remind(Memory.LastPandaMove).location))
 		}
 		return moves
 	}

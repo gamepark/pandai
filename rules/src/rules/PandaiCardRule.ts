@@ -21,7 +21,7 @@ export class PandaiCardRule extends PandaiPlayerTurnRule {
 			moves.push(this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenStock).moveItem({type:LocationType.PandaiTokenEarnedStock, player:this.player}));
 			moves.push(this.material(MaterialType.Panda).location(LocationType.PandaStock).player(this.player).moveItem({...pandaMoved.location, player:this.player}));
 		}
-		if(this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenEarnedStock).player(this.player).length===4){
+		if(this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenEarnedStock).player(this.player).getQuantity() === 4){
 			moves.push(this.rules().endGame());
 		}else{
 			moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer))
