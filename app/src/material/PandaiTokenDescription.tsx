@@ -29,7 +29,6 @@ export class PandaiTokenDescription extends RoundTokenDescription {
 
 	getFrontExtraCss(itemId:PandaiColor) {
 		const backgroundColor = pandaiColorCode[itemId]
-    console.log("backgroundColor1",backgroundColor)
 		return backgroundCss(backgroundColor)
 	}
 }
