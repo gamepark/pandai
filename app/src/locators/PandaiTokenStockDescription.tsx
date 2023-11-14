@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { LocationDescription } from '@gamepark/react-game';
-import { PlayerColor } from '@gamepark/pandai/PlayerColor';
-import { MaterialType } from '@gamepark/pandai/material/MaterialType';
-import { LocationType } from '@gamepark/pandai/material/LocationType';
-import { pandaiTokenDescription } from '../material/PandaiTokenDescription';
+import { PlayerColor } from '@gamepark/pandai/PlayerColor'
+import { LocationType } from '@gamepark/pandai/material/LocationType'
+import { MaterialType } from '@gamepark/pandai/material/MaterialType'
+import { LocationDescription } from '@gamepark/react-game'
+import { pandaiTokenDescription } from '../material/PandaiTokenDescription'
 
 export class PandaiTokenStockDescription extends LocationDescription<PlayerColor, MaterialType, LocationType> {
     location = { type: LocationType.PandaiTokenStock };

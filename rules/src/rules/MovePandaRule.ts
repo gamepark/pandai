@@ -60,7 +60,6 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 	}
 
 	afterItemMove(move: ItemMove): MaterialMove[] {
-		console.log('PandaMoveRule');
 		const moves: MaterialMove[] = [];
 		if (isMoveItem(move) && move.itemType === MaterialType.Panda) {
 			moves.push(...this.removeExistingPandas(move.location));
@@ -84,6 +83,7 @@ export class MovePandaRule extends PandaiPlayerTurnRule {
 	}
 
 	removeExistingPandas(moveLocation: Location) {
+		//console.log("removeExistingPandas")
 		return this.material(MaterialType.Panda)
 			.location(({ type, x, y }) => type === LocationType.GridSquare && x === moveLocation.x && y === moveLocation.y)
 			.id((id: number) => id % 10 !== this.player)

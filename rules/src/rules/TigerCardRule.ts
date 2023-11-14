@@ -13,17 +13,19 @@ export class TigerCardRule extends PandaiPlayerTurnRule {
 
 		const move: ItemMove = this.remind(Memory.LastPandaMove)
 		if (isMoveItem(move) && move.itemType === MaterialType.Panda) {
-			if (this.isLastPandaMovedWearingHat()) {
-				console.log('hat panda')
-				//hat panda
+			console.log('hat panda', this.getNormalPandas().length)
+			if (this.isLastPandaMovedWearingHat() && this.getNormalPandas().length > 0) {
 				moves.push(this.rules().startRule(RuleId.ChooseNewHatPandaRule))
 			} else {
 				moves.push(this.material(MaterialType.Panda).index(move.itemIndex).moveItem({ type: LocationType.PandaStock, player: this.player }))
-				if (this.onlyOnePlayerHasPanda()) {
-					moves.push(this.rules().endGame())
-				} else {
-					moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer))
-				}
+				this.material(MaterialType.Panda).index(move.itemIndex).moveItem({ type: LocationType.PandaStock, player: this.player })
+			}
+			console.log("this.onlyOnePlayerHasPanda()",this.onlyOnePlayerHasPanda())
+			this.rules().game.players.forEach(p=> console.log("player",p, this.getAllPandas(p)))
+			if (this.onlyOnePlayerHasPanda()) {
+				moves.push(this.rules().endGame())
+			} else {
+				moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer))
 			}
 		}
 		return moves
@@ -34,7 +36,7 @@ export class TigerCardRule extends PandaiPlayerTurnRule {
 	}
 
 	onlyOnePlayerHasPanda(): boolean {
-		return this.rules().game.players.reduce((acc, p) => acc != this.getAllPandas(p).length > 0, false)
+		return this.rules().game.players.filter(p=>p!==this.player).reduce((acc, p) => acc != this.getAllPandas(p).length > 0, false)
 	}
 }
 
@@ -44,6 +46,7 @@ export class WhiteTigerCardRule extends TigerCardRule {
 		const moves: MaterialMove[] = []
 		moves.push(this.material(MaterialType.ForestCard).id(PandaiCardType.WHITE_TIGER).moveItem({ type: LocationType.ForestDeck }))
 		moves.push(this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).shuffle())
+		this.material(MaterialType.ForestCard).location(LocationType.ForestDeck).shuffle()
 		moves.push(...super.onRuleStart(_move))
 		return moves
 	}
