@@ -36,7 +36,7 @@ export class TigerCardRule extends PandaiPlayerTurnRule {
 	}
 
 	onlyOnePlayerHasPanda(): boolean {
-		return this.rules().game.players.filter(p=>p!==this.player).reduce((acc, p) => acc != this.getAllPandas(p).length > 0, false)
+		return this.rules().game.players.reduce((acc, p) => acc != this.getAllPandas(p).length > 0, false)
 	}
 }
 

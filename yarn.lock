@@ -2237,8 +2237,8 @@ __metadata:
   dependencies:
     "@dnd-kit/core": "npm:^6.0.8"
     "@emotion/react": "npm:^11.11.1"
-    "@gamepark/react-game": "npm:~6.13.0"
-    "@gamepark/rules-api": "npm:~6.13.0"
+    "@gamepark/react-game": "npm:~6.13.1"
+    "@gamepark/rules-api": "npm:~6.13.1"
     "@testing-library/jest-dom": "npm:^5.14.1"
     "@testing-library/react": "npm:^12.0.0"
     "@testing-library/user-event": "npm:^13.2.1"
@@ -2264,16 +2264,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@gamepark/pandai@workspace:rules"
   dependencies:
-    "@gamepark/rules-api": "npm:~6.13.0"
+    "@gamepark/rules-api": "npm:~6.13.1"
     i18next: "npm:^22.0.3"
   peerDependencies:
-    "@gamepark/rules-api": ">=6.13"
+    "@gamepark/rules-api": ">=6.13.1"
   languageName: unknown
   linkType: soft
 
-"@gamepark/react-client@npm:^6.13.0":
-  version: 6.13.0
-  resolution: "@gamepark/react-client@npm:6.13.0"
+"@gamepark/react-client@npm:^6.13.1":
+  version: 6.13.1
+  resolution: "@gamepark/react-client@npm:6.13.1"
   dependencies:
     "@harelpls/use-pusher": "npm:^7.2.1"
     assert: "npm:^2.0.0"
@@ -2288,13 +2288,13 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-redux: ^8.0.5
-  checksum: 49fed2d400845495f18c78fe8f7e5d6e4d6e872492b2fbd93402b8e9f11ecee20f1106e43ec578a29d6ba274499c4881b0a2f8781f230665072d36c2eb9f2019
+  checksum: 95ca500ca5205bf793c6d184f0e1865405ce6dcb35d2ecfd518b8101332ce4b0a89315d723c18a3923e3c23f57b0b042a264975b64c031fa6d167cb23acab79b
   languageName: node
   linkType: hard
 
-"@gamepark/react-game@npm:~6.13.0":
-  version: 6.13.0
-  resolution: "@gamepark/react-game@npm:6.13.0"
+"@gamepark/react-game@npm:~6.13.1":
+  version: 6.13.1
+  resolution: "@gamepark/react-game@npm:6.13.1"
   dependencies:
     "@apollo/client": "npm:^3.5.0"
     "@datadog/browser-logs": "npm:^4.42.0"
@@ -2304,8 +2304,8 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.0"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@gamepark/avataaars": "npm:^2.2.0"
-    "@gamepark/react-client": "npm:^6.13.0"
-    "@gamepark/rules-api": "npm:^6.13.0"
+    "@gamepark/react-client": "npm:^6.13.1"
+    "@gamepark/rules-api": "npm:^6.13.1"
     dayjs: "npm:^1.11.7"
     emotion-normalize: "npm:^11.0.1"
     fscreen: "npm:^1.2.0"
@@ -2329,17 +2329,17 @@ __metadata:
     react-dom: ^17.0.2
     react-i18next: ^12.2.2
     react-redux: ^8.0.5
-  checksum: 476102b6e0e9abefef3c67c05447fe00206987a1cee7698d597a21e7b2c42b668c929bbde8da1101f35e590001dcfbe029bcfed5ddbf57904b58e1b2ab5b17ca
+  checksum: dd4a0c7419407d27d797b7f7f8b5f0fc4be73310f5b1eb55df9335dbee389ce223e8192c27ebf3dee6670df7344a5904d1d1497e629d969f5aefb5324991a743
   languageName: node
   linkType: hard
 
-"@gamepark/rules-api@npm:^6.13.0, @gamepark/rules-api@npm:~6.13.0":
-  version: 6.13.0
-  resolution: "@gamepark/rules-api@npm:6.13.0"
+"@gamepark/rules-api@npm:^6.13.1, @gamepark/rules-api@npm:~6.13.1":
+  version: 6.13.1
+  resolution: "@gamepark/rules-api@npm:6.13.1"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
     lodash: "npm:^4.17.21"
-  checksum: 8a563705cfbc387671d98260d44940b6562bdfaeca42ed8b8060de2eb4bd40109e4fbed0220e3307cdfc09d1996f80267418d744a346b8ecc5d8eeaf7fec2f56
+  checksum: 0d6fd480ff9119223950930cf5b92b5f5aaf2b45d6cd995133941719573281b4aaea4b2b029d61ca5c49b37b20a01157d9113a1ef5844817a52e3b6c380f19cc
   languageName: node
   linkType: hard
 
