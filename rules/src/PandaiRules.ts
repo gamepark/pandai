@@ -55,4 +55,8 @@ export class PandaiRules extends HiddenMaterialRules<PlayerColor, MaterialType, 
 			[LocationType.MeadowDeck]: hideItemId,
 		},
 	};
+
+	getScore(player: PlayerColor) {
+		return this.material(MaterialType.PandaiToken).location(LocationType.PandaiTokenEarnedStock).player(player).length
+	  }
 }
