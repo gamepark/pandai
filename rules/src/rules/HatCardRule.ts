@@ -38,8 +38,8 @@ export class HatCardRule extends PandaiPlayerTurnRule {
 			//console.log( selectedPanda.getItem()!.location, "=>",pandaMoved.getItem()?.location, "|")
 			moves.push(pandaMoved.moveItem(selectedPanda.getItem()?.location!));
 			moves.push(selectedPanda.moveItem(pandaMoved.getItem()?.location!));
+			moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer));
 		}
-		moves.push(this.rules().startPlayerTurn(RuleId.MovePanda, this.nextPlayer));
 		return moves;
 	}
 
