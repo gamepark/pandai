@@ -7,24 +7,21 @@ import { css } from '@emotion/react'*/
 
 import { css } from '@emotion/react'
 import { PandaiColor } from '@gamepark/pandai/material/PandaiColor'
-import card1 from '../images/tokens/token-blue.png'
-import card2 from '../images/tokens/token-brown.png'
-import card3 from '../images/tokens/token-green.png'
-import card4 from '../images/tokens/token-purple.png'
-import card5 from '../images/tokens/token-red.png'
-import card6 from '../images/tokens/token-yellow.png'
+import Images from '../images/Images'
+
+
 
 export class PandaiTokenDescription extends RoundTokenDescription {
 	ratio = 1
 	diameter = 4
 	width = this.diameter
 	images = {
-		[PandaiColor.Blue]: card1,
-		[PandaiColor.Brown]: card2,
-		[PandaiColor.Green]: card3,
-		[PandaiColor.Purple]: card4,
-		[PandaiColor.Red]: card5,
-		[PandaiColor.Yellow]: card6
+		[PandaiColor.Blue]: Images.PandaiColorBlue,
+		[PandaiColor.Brown]: Images.PandaiColorBrown,
+		[PandaiColor.Green]: Images.PandaiColorGreen,
+		[PandaiColor.Purple]: Images.PandaiColorPurple,
+		[PandaiColor.Red]: Images.PandaiColorRed,
+		[PandaiColor.Yellow]: Images.PandaiColorYellow
 	}
 
 	getFrontExtraCss(itemId:PandaiColor) {

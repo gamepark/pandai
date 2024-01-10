@@ -6,26 +6,29 @@ import { FC } from 'react'
 import { PandaiPlayerPanel } from './PandaiPlayerPanel'
 
 export const PlayerPanels: FC<any> = () => {
-  const players = usePlayers({ sortFromMe: true })
-  return (
-    <>
-      {players.map((player, index) =>
-        <PandaiPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={panelPosition(index)}/>
-      )}
-    </>
-  )
+	const players = usePlayers({ sortFromMe: true })
+	return (
+		<>
+			{players.map((player) => (
+				<PandaiPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={panelPosition(player.id)} />
+			))}
+		</>
+	)
 }
-const panelPosition = (index: number) => css`
+const panelPosition = (color: number) =>
+	css`
   position: absolute;
-  right: 1em;
-  top: ${8.5 + index * 16}em;
+  ${horizontal(color)}:  1em;
+  ${vertical(color)}: 1em;
   width: 28em;
   height: 14em;
 `
+const horizontal = (color: PlayerColor) => (color === PlayerColor.Blue || color === PlayerColor.Black) ? "right" : "left"
+const vertical = (color: PlayerColor) => (color === PlayerColor.Pink || color === PlayerColor.Black) ? "top" : "bottom"
 
 export const playerColorCode: Record<PlayerColor, string> = {
-  [PlayerColor.Black]: 'darkslategrey',
-  [PlayerColor.Blue]: 'blue',
-  [PlayerColor.Orange]: 'orange',
-  [PlayerColor.Pink]: 'hotpink'
+	[PlayerColor.Black]: 'darkslategrey',
+	[PlayerColor.Blue]: 'blue',
+	[PlayerColor.Orange]: 'orange',
+	[PlayerColor.Pink]: 'hotpink'
 }
