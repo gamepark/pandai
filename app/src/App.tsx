@@ -5,27 +5,37 @@ import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, Menu, 
 import { MaterialGame } from '@gamepark/rules-api'
 import { useEffect, useState } from 'react'
 import GameDisplay from './GameDisplay'
-import { PlayerTurnHeader } from './headers/PlayerTurnHeader'
+import { MovePandaHeader } from './headers/MovePandaHeader';
+import { ChooseCardTypeHeader } from './headers/ChooseCardTypeHeader';
+import { HatRuleHeader } from './headers/HatRuleHeader';
+import { PorcupineRuleHeader } from './headers/PorcupineRuleHeader'
+import { FruitsRuleHeader } from './headers/FruitsRuleHeader'
+import { ChooseNewHatPandaHeader } from './headers/ChoosePandaHatHeader'
 
 export default function App() {
-  const game = useGame<MaterialGame>()
-  const [isJustDisplayed, setJustDisplayed] = useState(true)
-  useEffect(() => {
-    setTimeout(() => setJustDisplayed(false), 2000)
-  }, [])
-  const loading = !game || isJustDisplayed
-  return (
-    <>
-      <GameDisplay/>
-      <LoadingScreen display={loading} author="Someone" artist="Somebody" publisher="Nobody" developer="You"/>
-      <MaterialHeader rulesStepsHeaders={RulesHeaders} loading={loading}/>
-      <Menu/>
-      <FailuresDialog/>
-      <FullscreenDialog/>
-    </>
-  )
+	const game = useGame<MaterialGame>();
+	const [isJustDisplayed, setJustDisplayed] = useState(true);
+	useEffect(() => {
+		setTimeout(() => setJustDisplayed(false), 2000);
+	}, []);
+	const loading = !game || isJustDisplayed;
+	return (
+		<>
+			<GameDisplay />
+			<LoadingScreen display={loading} author="Igor Polouchine" artist="Paul Mafayon" publisher="Origames" developer="Séverine Kamycki (Mizutismask)" />
+			<MaterialHeader rulesStepsHeaders={RulesHeaders} loading={loading} />
+			<Menu />
+			<FailuresDialog />
+			<FullscreenDialog />
+		</>
+	);
 }
 
 const RulesHeaders: Partial<Record<RuleId, () => ReactJSXElement>> = {
-  [RuleId.PlayerTurn]: PlayerTurnHeader
-}
+	[RuleId.MovePanda]: MovePandaHeader,
+	[RuleId.PorcupineCardRule]: PorcupineRuleHeader,
+	[RuleId.FruitsRule]: FruitsRuleHeader,
+	[RuleId.ChooseCardType]: ChooseCardTypeHeader,
+	[RuleId.HatRule]: HatRuleHeader,
+	[RuleId.ChooseNewHatPandaRule]: ChooseNewHatPandaHeader,
+};
